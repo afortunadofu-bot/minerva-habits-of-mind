@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>思考的習慣 — Minerva 思維方法完整教材</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Zilla+Slab:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f1e7;
+  --paper-deep:#efe7d6;
+  --ink:#1c1a17;
+  --ink-soft:#4a453d;
+  --vermillion:#c8401f;
+  --vermillion-deep:#9c2f13;
+  --teal:#1e5f5a;
+  --gold:#b98a2f;
+  --line:#d8cdb8;
+  --serif:'Noto Serif TC','Zilla Slab',serif;
+  --sans:'Noto Sans TC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.85;
+  font-size:16px;
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(200,64,31,.04), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(30,95,90,.05), transparent 40%);
+}
+::selection{background:var(--vermillion);color:var(--paper);}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(246,241,231,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:2px solid var(--ink);
+  display:flex;align-items:center;gap:4px;
+  padding:0 20px;overflow-x:auto;white-space:nowrap;
+}
+nav .brand{
+  font-family:var(--serif);font-weight:900;font-size:15px;
+  padding:14px 16px 14px 0;margin-right:auto;letter-spacing:.05em;
+}
+nav .brand span{color:var(--vermillion);}
+nav a{
+  color:var(--ink);text-decoration:none;font-size:13.5px;font-weight:500;
+  padding:16px 13px;letter-spacing:.08em;position:relative;
+}
+nav a:hover{color:var(--vermillion);}
+nav a::after{content:'';position:absolute;left:13px;right:13px;bottom:10px;height:2px;background:var(--vermillion);transform:scaleX(0);transition:transform .25s;transform-origin:left;}
+nav a:hover::after{transform:scaleX(1);}
+
+/* ---------- HERO ---------- */
+header{
+  padding:88px 24px 72px;
+  max-width:1080px;margin:0 auto;
+  position:relative;
+}
+.kicker{
+  display:inline-block;font-size:12.5px;letter-spacing:.35em;
+  border:1.5px solid var(--ink);padding:6px 16px 6px 20px;
+  margin-bottom:32px;font-weight:500;
+}
+h1{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(44px,8vw,88px);line-height:1.12;letter-spacing:.02em;
+}
+h1 em{font-style:normal;color:var(--vermillion);position:relative;}
+.hero-sub{
+  font-family:var(--serif);font-size:clamp(17px,2.4vw,22px);
+  color:var(--ink-soft);margin-top:26px;max-width:640px;line-height:2;
+}
+.hero-meta{
+  margin-top:44px;display:flex;flex-wrap:wrap;gap:0;
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+}
+.hero-meta div{
+  flex:1;min-width:170px;padding:18px 20px;
+  border-right:1px solid var(--line);
+}
+.hero-meta div:last-child{border-right:none;}
+.hero-meta b{display:block;font-family:var(--serif);font-size:30px;font-weight:900;color:var(--vermillion);line-height:1.2;}
+.hero-meta span{font-size:12.5px;letter-spacing:.15em;color:var(--ink-soft);}
+.hero-num{
+  position:absolute;right:10px;top:60px;
+  font-family:'Zilla Slab',serif;font-size:clamp(120px,20vw,240px);
+  font-weight:600;color:transparent;
+  -webkit-text-stroke:1.5px rgba(28,26,23,.13);
+  pointer-events:none;user-select:none;line-height:1;
+}
+
+/* ---------- LAYOUT ---------- */
+main{max-width:1080px;margin:0 auto;padding:0 24px 100px;}
+section{padding-top:72px;}
+.sec-head{display:flex;align-items:baseline;gap:20px;border-bottom:3px solid var(--ink);padding-bottom:14px;margin-bottom:14px;flex-wrap:wrap;}
+.sec-num{
+  font-family:'Zilla Slab',serif;font-size:56px;font-weight:600;
+  color:var(--vermillion);line-height:1;
+}
+.sec-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(26px,4vw,38px);letter-spacing:.03em;}
+.sec-head .en{font-family:'Zilla Slab',serif;font-style:italic;color:var(--ink-soft);font-size:16px;margin-left:auto;letter-spacing:.05em;}
+.sec-intro{max-width:720px;color:var(--ink-soft);margin:20px 0 36px;font-size:16.5px;}
+.sec-intro strong{color:var(--ink);}
+
+/* ---------- 導論 blocks ---------- */
+.intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:32px;}
+.intro-card{
+  border:1.5px solid var(--ink);padding:26px 24px;background:var(--paper);
+  position:relative;transition:transform .2s, box-shadow .2s;
+}
+.intro-card:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink);}
+.intro-card h3{font-family:var(--serif);font-size:19px;font-weight:700;margin-bottom:10px;}
+.intro-card .tag{position:absolute;top:-11px;left:18px;background:var(--vermillion);color:var(--paper);font-size:11.5px;letter-spacing:.2em;padding:2px 12px;font-weight:500;}
+.intro-card p{font-size:14.5px;color:var(--ink-soft);}
+
+blockquote{
+  border-left:5px solid var(--vermillion);
+  padding:6px 0 6px 26px;margin:36px 0;
+  font-family:var(--serif);font-size:clamp(18px,2.6vw,23px);
+  font-weight:600;line-height:1.9;max-width:760px;
+}
+blockquote small{display:block;font-family:var(--sans);font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:10px;letter-spacing:.1em;}
+
+/* ---------- FILTER ---------- */
+.filter-bar{
+  position:sticky;top:52px;z-index:50;
+  background:var(--paper-deep);border:2px solid var(--ink);
+  padding:12px 18px;margin:8px 0 40px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.filter-bar .lbl{font-size:13px;font-weight:700;letter-spacing:.15em;margin-right:4px;}
+.chip{
+  border:1.5px solid var(--ink);background:transparent;color:var(--ink);
+  font-family:var(--sans);font-size:13px;padding:5px 15px;cursor:pointer;
+  letter-spacing:.08em;transition:all .18s;border-radius:999px;
+}
+.chip:hover{background:var(--ink);color:var(--paper);}
+.chip.active{background:var(--vermillion);border-color:var(--vermillion);color:#fff;}
+
+/* ---------- HC CARDS ---------- */
+.hc-list{display:flex;flex-direction:column;gap:14px;}
+.hc{
+  border:2px solid var(--ink);background:var(--paper);
+  transition:box-shadow .2s;
+}
+.hc.open{box-shadow:6px 6px 0 var(--ink);}
+.hc.hidden{display:none;}
+.hc-head{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 20px;cursor:pointer;user-select:none;flex-wrap:wrap;
+}
+.hc-head:hover .hc-name{color:var(--vermillion);}
+.hc-hash{
+  font-family:'Zilla Slab',serif;font-size:13px;font-weight:600;
+  background:var(--ink);color:var(--paper);padding:3px 11px;letter-spacing:.03em;white-space:nowrap;
+}
+.c1 .hc-hash{background:var(--vermillion);}
+.c2 .hc-hash{background:var(--teal);}
+.c3 .hc-hash{background:var(--gold);}
+.c4 .hc-hash{background:var(--ink);}
+.hc-name{font-family:var(--serif);font-weight:700;font-size:18.5px;transition:color .18s;}
+.hc-one{font-size:13.5px;color:var(--ink-soft);flex:1;min-width:200px;}
+.hc-toggle{
+  font-family:'Zilla Slab',serif;font-size:22px;width:32px;height:32px;
+  border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:transform .25s,background .18s;
+}
+.hc.open .hc-toggle{transform:rotate(45deg);background:var(--vermillion);border-color:var(--vermillion);color:#fff;}
+.hc-body{display:none;padding:6px 24px 26px;border-top:1.5px dashed var(--line);}
+.hc.open .hc-body{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+.hc-body h4{
+  font-size:13px;letter-spacing:.25em;font-weight:700;color:var(--vermillion);
+  margin:22px 0 10px;display:flex;align-items:center;gap:10px;
+}
+.hc-body h4::after{content:'';flex:1;height:1px;background:var(--line);}
+.hc-body p{font-size:15px;color:var(--ink-soft);max-width:760px;}
+.hc-body p b, .hc-body li b{color:var(--ink);}
+.steps{list-style:none;counter-reset:step;max-width:760px;}
+.steps li{
+  counter-increment:step;position:relative;padding:6px 0 6px 44px;
+  font-size:15px;color:var(--ink-soft);
+}
+.steps li::before{
+  content:counter(step);position:absolute;left:0;top:8px;
+  width:28px;height:28px;border:1.5px solid var(--ink);
+  font-family:'Zilla Slab',serif;font-weight:600;font-size:14px;
+  display:flex;align-items:center;justify-content:center;background:var(--paper-deep);
+}
+.scene{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:4px;
+}
+.scene-card{
+  background:var(--paper-deep);border:1.5px solid var(--line);padding:16px 18px;
+}
+.scene-card .where{
+  font-size:11.5px;letter-spacing:.2em;font-weight:700;color:var(--teal);
+  margin-bottom:6px;display:block;
+}
+.scene-card p{font-size:14px;line-height:1.8;}
+.pitfall{
+  margin-top:18px;background:#fbeae4;border:1.5px solid var(--vermillion);
+  padding:14px 18px;font-size:14px;color:var(--vermillion-deep);max-width:760px;
+}
+.pitfall b{letter-spacing:.1em;}
+
+/* ---------- 能力區塊色帶 ---------- */
+.comp-banner{
+  display:flex;align-items:center;gap:16px;margin:16px 0 28px;
+  padding:16px 22px;color:var(--paper);flex-wrap:wrap;
+}
+.comp-banner.b1{background:var(--vermillion);}
+.comp-banner.b2{background:var(--teal);}
+.comp-banner.b3{background:var(--gold);}
+.comp-banner.b4{background:var(--ink);}
+.comp-banner p{font-size:14.5px;line-height:1.8;max-width:780px;color:rgba(255,255,255,.92);}
+
+/* ---------- 練習系統 ---------- */
+.practice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border:2px solid var(--ink);margin-top:30px;}
+.practice-step{padding:30px 26px;border-right:1.5px solid var(--ink);position:relative;}
+.practice-step:last-child{border-right:none;}
+.practice-step .big{
+  font-family:'Zilla Slab',serif;font-size:64px;font-weight:600;
+  color:transparent;-webkit-text-stroke:1.5px var(--vermillion);line-height:1;
+}
+.practice-step h3{font-family:var(--serif);font-size:20px;font-weight:700;margin:14px 0 10px;}
+.practice-step p{font-size:14.5px;color:var(--ink-soft);}
+.week-table{width:100%;border-collapse:collapse;margin-top:34px;font-size:14.5px;}
+.week-table caption{
+  text-align:left;font-family:var(--serif);font-weight:700;font-size:19px;
+  padding-bottom:14px;
+}
+.week-table th{
+  background:var(--ink);color:var(--paper);text-align:left;
+  padding:11px 16px;font-weight:500;letter-spacing:.1em;font-size:13px;
+}
+.week-table td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft);}
+.week-table td:first-child{font-weight:700;color:var(--ink);white-space:nowrap;}
+.week-table .wk-hash{font-family:'Zilla Slab',serif;font-size:13px;color:var(--vermillion);font-weight:600;}
+
+/* ---------- 誤區 ---------- */
+.trap{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:30px;}
+.trap-card{border:2px solid var(--ink);padding:24px;background:var(--paper);}
+.trap-card .no{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  font-family:'Zilla Slab',serif;font-size:13px;padding:2px 12px;margin-bottom:12px;letter-spacing:.1em;
+}
+.trap-card h3{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:8px;}
+.trap-card h3 s{color:var(--vermillion);text-decoration-thickness:2.5px;}
+.trap-card p{font-size:14px;color:var(--ink-soft);}
+
+/* ---------- 速查表 ---------- */
+.cheat{width:100%;border-collapse:collapse;margin-top:26px;font-size:14px;}
+.cheat th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-weight:500;letter-spacing:.12em;font-size:12.5px;}
+.cheat td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;}
+.cheat td:first-child{font-family:'Zilla Slab',serif;font-weight:600;white-space:nowrap;}
+.cheat tr.cat td{
+  background:var(--paper-deep);font-family:var(--serif);font-weight:700;color:var(--ink);
+  letter-spacing:.1em;border-top:2px solid var(--ink);
+}
+.cheat .q{color:var(--ink);font-weight:500;}
+
+footer{
+  border-top:3px solid var(--ink);margin-top:90px;padding:40px 24px 60px;
+  max-width:1080px;margin-left:auto;margin-right:auto;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;
+}
+footer .f-title{font-family:var(--serif);font-weight:900;font-size:22px;}
+footer .f-title span{color:var(--vermillion);}
+footer p{font-size:13px;color:var(--ink-soft);max-width:460px;}
+
+@media (max-width:640px){
+  .hero-num{display:none;}
+  .hc-one{display:none;}
+  .filter-bar{top:50px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">思考的<span>習慣</span> HC</div>
+  <a href="#intro">導論</a>
+  <a href="#c1">批判思考</a>
+  <a href="#c2">創意思考</a>
+  <a href="#c3">有效溝通</a>
+  <a href="#c4">有效互動</a>
+  <a href="#practice">練習系統</a>
+  <a href="#traps">常見誤區</a>
+  <a href="#cheat">速查表</a>
+</nav>
+
+<header>
+  <div class="hero-num">28</div>
+  <span class="kicker">MINERVA UNIVERSITY · HABITS OF MIND</span>
+  <h1>思考的習慣<br>是可以<em>練</em>出來的</h1>
+  <p class="hero-sub">Minerva 大學把「聰明地思考」拆解成一條一條具體、可練習、可反覆使用的心智工具,稱為 <b>HC(Habits of Mind & Foundational Concepts)</b>。這份教材從中精選 28 條最貼近日常生活的準則,每一條都附上做法與真實場景——不需要任何學術背景,任何人都能今天開始用。</p>
+  <div class="hero-meta">
+    <div><b>4</b><span>大核心能力</span></div>
+    <div><b>28</b><span>條思維準則</span></div>
+    <div><b>56+</b><span>個生活應用場景</span></div>
+    <div><b>0</b><span>需要的先備知識</span></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= 導論 ================= -->
+<section id="intro">
+  <div class="sec-head">
+    <span class="sec-num">00</span>
+    <h2>導論:什麼是 HC?</h2>
+    <span class="en">Introduction</span>
+  </div>
+  <p class="sec-intro">
+    Minerva 是一所以「教會學生思考,而不是灌輸知識」聞名的大學。它的核心方法是:把批判思考、創造力、溝通、協作這些聽起來很抽象的能力,<strong>拆解成 80 多個具體到可以打分數的小單位</strong>,每個單位用一個 hashtag 命名(例如 <b>#assumptions</b>、<b>#breakitdown</b>)。學生在課堂發言、寫作業、做專案時,都要標註自己用了哪個 HC,老師則針對「你用得好不好」給回饋。
+  </p>
+  <blockquote>
+    知識會過時,但「怎麼思考」的習慣會跟著你一輩子。
+    <small>—— Minerva 教學設計的核心信念(Far Transfer:讓能力遷移到全新情境)</small>
+  </blockquote>
+  <div class="intro-grid">
+    <div class="intro-card">
+      <span class="tag">為什麼有效</span>
+      <h3>把抽象變具體</h3>
+      <p>「要有批判思考」是句空話;「先問這個結論背後藏了什麼假設」是一個動作。HC 的價值在於:每一條都小到可以立刻執行、可以檢查自己有沒有做到。</p>
+    </div>
+    <div class="intro-card">
+      <span class="tag">科學根據</span>
+      <h3>刻意練習 + 間隔重複</h3>
+      <p>HC 的設計建立在學習科學上:同一條準則在不同情境反覆出現(上課、開會、吵架、買東西),大腦才會把它自動化成「習慣」,而不是考完就忘的知識。</p>
+    </div>
+    <div class="intro-card">
+      <span class="tag">怎麼用這份教材</span>
+      <h3>不要一次讀完</h3>
+      <p>建議先瀏覽四大能力的開頭介紹,再挑 2–3 條你「最近剛好用得到」的準則細讀。之後照第 5 章的練習系統,每週輪替練習。收藏這頁,把它當成工具箱,而不是課本。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 篩選器 -->
+<div class="filter-bar" id="filterBar">
+  <span class="lbl">依生活領域篩選</span>
+  <button class="chip active" data-f="all">全部</button>
+  <button class="chip" data-f="work">職場工作</button>
+  <button class="chip" data-f="family">感情・家庭</button>
+  <button class="chip" data-f="money">金錢・消費</button>
+  <button class="chip" data-f="self">自我成長</button>
+</div>
+
+<!-- ================= 1 批判思考 ================= -->
+<section id="c1" class="c1">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>批判思考</h2>
+    <span class="en">Thinking Critically</span>
+  </div>
+  <div class="comp-banner b1">
+    <p><b>核心問題:「我為什麼相信這件事?」</b>——批判思考不是唱反調,而是在接受任何資訊、做任何判斷之前,先檢查證據、來源、假設和自己的偏誤。它保護你不被廣告、謠言、話術,以及你自己的大腦騙走。</p>
+  </div>
+
+  <div class="hc-list">
+
+    <div class="hc" data-domains="work money self">
+      <div class="hc-head">
+        <span class="hc-hash">#evidencebased</span>
+        <span class="hc-name">基於證據</span>
+        <span class="hc-one">下判斷前,先問「支持它的證據是什麼?」</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>任何主張的可信度,取決於背後證據的<b>品質與數量</b>,而不是講的人多大聲、多有名、或聽起來多合理。沒有證據的主張,只能算「猜想」。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>聽到一個主張時,先在心裡標記:「這是<b>事實</b>、<b>意見</b>,還是<b>推測</b>?」</li>
+          <li>問:「有什麼證據?」——是數據、研究、親身經驗,還是「大家都這樣說」?</li>
+          <li>證據不足時,把結論降級為「暫時假設」,允許自己說「我還不確定」。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">健康・消費</span><p>看到「這個保健食品能增強免疫力」,先查:有人體實驗嗎?樣本多大?還是只有「使用者見證」?見證不是證據——會回購的人本來就是覺得有效的人。</p></div>
+          <div class="scene-card"><span class="where">職場</span><p>同事說「客戶不喜歡新版介面」。先問:是幾位客戶?他們原話怎麼說?也許只是一位大嗓門客戶的抱怨,被放大成了「所有客戶」。</p></div>
+        </div>
+        <div class="pitfall"><b>常見陷阱:</b>「聽起來很合理」不等於「有證據」。人類大腦對流暢、好懂的故事有天然好感,越順耳的說法越要查。</div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work money self">
+      <div class="hc-head">
+        <span class="hc-hash">#sourcequality</span>
+        <span class="hc-name">評估來源品質</span>
+        <span class="hc-one">資訊的可信度,先看它從哪裡來、誰得利</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>同一句話,出自不同來源,可信度天差地遠。評估來源要看三件事:<b>專業性</b>(他懂這領域嗎)、<b>利益關係</b>(他說這話能得到什麼)、<b>過往紀錄</b>(他以前說的準嗎)。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>看到轉傳訊息或新聞,先找<b>原始出處</b>——是研究論文、官方公告,還是「網友表示」?</li>
+          <li>問:「這個來源說這句話,有沒有利益動機?」賣房的說現在是買房好時機,參考價值要打折。</li>
+          <li>重要決定至少交叉比對<b>兩個立場不同</b>的來源。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">金錢</span><p>理財網紅推薦某檔標的,先查:他有沒有揭露業配?他過去的推薦績效如何?「講得頭頭是道」和「值得跟單」是兩回事。</p></div>
+          <div class="scene-card"><span class="where">家庭</span><p>長輩群組轉傳「吃 X 會致癌」,回覆前先花一分鐘搜尋原始研究或事實查核平台,再溫和地把查證結果分享回去——附來源,而不是只說「這是假的」。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work family self">
+      <div class="hc-head">
+        <span class="hc-hash">#assumptions</span>
+        <span class="hc-name">檢視隱藏假設</span>
+        <span class="hc-one">每個結論底下,都埋著沒說出口的前提</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>當一個結論讓你痛苦、焦慮或憤怒,問題常常不在結論本身,而在它<b>依賴的隱藏前提</b>。把前提挖出來攤在陽光下,很多結論會自動瓦解。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>把困擾你的結論寫下來,例如:「我不適合這份工作。」</li>
+          <li>問:「這個結論要成立,還需要哪些事情為真?」——列出來(例:「適合的工作第一年就該得心應手」)。</li>
+          <li>逐條檢查:這些前提有證據嗎?還是只是我從小聽來、從沒質疑過的信念?</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">感情</span><p>「他已讀不回,一定是不在乎我」——隱藏前提是「在乎的人必定秒回」。這個前提為真嗎?你自己在乎的人,你每次都秒回嗎?</p></div>
+          <div class="scene-card"><span class="where">職涯</span><p>「30 歲了才轉行來不及」——前提是「職涯只有一條標準時程」。查一下你想去的行業,實際上有多少人是轉職進去的,前提往往當場破功。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work money self">
+      <div class="hc-head">
+        <span class="hc-hash">#biasidentification</span>
+        <span class="hc-name">辨識認知偏誤</span>
+        <span class="hc-one">你的大腦會系統性地騙你,而且有固定套路</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>偏誤不是「笨」,而是大腦為了省力演化出的捷徑。你無法消除偏誤,但可以<b>認得它們的長相</b>,在重要決定前主動檢查。最常見的四個:</p>
+        <ol class="steps">
+          <li><b>確認偏誤:</b>只看得見支持自己立場的資訊。解法:主動搜尋「反方最強的論點」。</li>
+          <li><b>沉沒成本:</b>「都投入這麼多了,放棄太可惜」。解法:問「如果今天重來,我還會選它嗎?」已花掉的成本不該影響未來的決定。</li>
+          <li><b>倖存者偏差:</b>只看到成功案例(失敗的人不會出來演講)。解法:問「有多少人做了一樣的事但失敗了?」</li>
+          <li><b>錨定效應:</b>第一個看到的數字會綁架你的判斷。解法:在看到對方報價前,先自己算出合理範圍。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">金錢</span><p>「原價 3,990,特價 1,990」——3,990 就是錨。正確問法不是「省了兩千划不划算」,而是「這東西本身值不值 1,990?我原本需要它嗎?」</p></div>
+          <div class="scene-card"><span class="where">感情・工作</span><p>一段消耗你的關係或做了三年的專案,「都撐這麼久了」是沉沒成本在說話。用「重來測試」:如果今天第一天認識/開始,我還會選嗎?</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="money self">
+      <div class="hc-head">
+        <span class="hc-hash">#plausibility</span>
+        <span class="hc-name">合理性檢驗</span>
+        <span class="hc-one">十秒鐘的「這可能嗎?」能擋掉八成的鬼扯</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>在深入研究之前,先用常識和簡單邏輯做一次<b>快篩</b>:如果這件事是真的,世界應該會長什麼樣子?和現實對得上嗎?越是「好到不像真的」的事,越需要這一關。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>問:「如果這是真的,會有什麼<b>必然後果</b>?」(例:穩賺 20% 月報酬 → 銀行早就倒光了)</li>
+          <li>問:「為什麼是<b>我</b>得到這個機會?」天上掉下來的好事,通常是別人設計好的餌。</li>
+          <li>把數字放大或縮小看看合不合理:「每天只要 10 分鐘就能精通英文」× 365 天 = 60 小時,精通一門語言需要 60 小時嗎?</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">金錢</span><p>投資群組說「老師帶單,保證獲利」。合理性檢驗:真有穩賺方法的人,為什麼要辛苦拉你入群賺你會費,而不是自己安靜地變成世界首富?</p></div>
+          <div class="scene-card"><span class="where">日常</span><p>「某某食物是致癌元凶」——如果真的這麼毒,吃了幾百年的整個族群癌症率應該爆表。查一下,沒有?那標題大概比內容毒。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work money">
+      <div class="hc-head">
+        <span class="hc-hash">#estimation</span>
+        <span class="hc-name">粗略估算(費米估算)</span>
+        <span class="hc-one">不用精確數據,也能算出「大概對不對」</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>很多決定不需要精確答案,只需要知道<b>數量級</b>對不對(是一千、一萬、還是一百萬?)。把大問題拆成幾個可以合理猜測的小數字相乘,你就能在紙巾背面驗證任何計畫。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>把問題拆成「數量 × 比率 × 頻率」之類的乘法鏈。</li>
+          <li>每個環節取一個保守的合理猜測(寧可低估)。</li>
+          <li>算出結果後問:「這個數字支撐得起我的計畫嗎?差十倍會怎樣?」</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">創業・副業</span><p>想開咖啡廳?估算:座位 20 × 翻桌 3 次 × 客單價 150 × 30 天 = 月營收約 27 萬。扣掉房租、人力、原料後剩多少?五分鐘的算術,勝過三個月的浪漫想像。</p></div>
+          <div class="scene-card"><span class="where">金錢</span><p>「每天一杯手搖」值多少?60 元 × 365 ≈ 2.2 萬/年,十年 22 萬。不是說不能買,而是讓你「知道自己在花什麼」再決定。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work family self">
+      <div class="hc-head">
+        <span class="hc-hash">#fallacies</span>
+        <span class="hc-name">識破邏輯謬誤</span>
+        <span class="hc-one">吵不贏的架,常常是因為對方犯規你沒發現</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>謬誤是「聽起來像論證,實際上不成立」的推理。認得最常見的幾種,你在討論裡就不會被牽著走:</p>
+        <ol class="steps">
+          <li><b>稻草人:</b>把你的話扭曲成極端版本再攻擊。「我覺得可以少吃點肉」→「你是要大家都吃素餓死嗎?」對策:指出「那不是我說的,我說的是……」</li>
+          <li><b>滑坡:</b>「今天讓你晚回家,明天你就不回家了!」——中間每一步都沒有必然性。對策:要求對方說明每一步為什麼會發生。</li>
+          <li><b>人身攻擊:</b>不回應論點,改攻擊講的人。「你單身,沒資格談感情經營。」論點的對錯與講者是誰無關。</li>
+          <li><b>訴諸多數/傳統:</b>「大家都這樣」「以前都這樣」不是理由——大家都錯過,以前也錯過。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">家庭</span><p>家庭聚會的政治爭論裡,先在心裡幫每句話分類:這是證據、意見,還是謬誤?你會發現多數火藥味來自稻草人——大家攻擊的都是對方沒說過的話。</p></div>
+          <div class="scene-card"><span class="where">職場</span><p>會議上有人說「這方法我們十年前試過,不行」。這是訴諸過往——十年前的市場、工具、團隊都不同,需要重新論證,而不是一句話否決。</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 2 創意思考 ================= -->
+<section id="c2" class="c2">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>創意思考</h2>
+    <span class="en">Thinking Creatively</span>
+  </div>
+  <div class="comp-banner b2">
+    <p><b>核心問題:「還有沒有別的可能?」</b>——創意不是藝術家的專利,而是一組可學習的解題技術:把問題拆小、換個框架、借用別的領域的解法、把限制變成燃料。卡住的時候,這一章就是你的扳手。</p>
+  </div>
+
+  <div class="hc-list">
+
+    <div class="hc" data-domains="work self">
+      <div class="hc-head">
+        <span class="hc-hash">#breakitdown</span>
+        <span class="hc-name">拆解問題</span>
+        <span class="hc-one">解不了的大問題,是還沒拆夠的小問題</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>焦慮的最大來源是「問題大到不知從何下手」。把一個模糊的大問題,拆成<b>彼此獨立、可以各自解決</b>的子問題,焦慮會立刻變成待辦清單。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>寫下大問題,問:「它是由哪幾個部分組成的?」拆到每一塊都能回答「我今天可以為它做什麼」。</li>
+          <li>檢查子問題之間是否<b>不重疊、不遺漏</b>(顧問說的 MECE)。</li>
+          <li>找出其中<b>最卡</b>的那一塊(瓶頸),優先處理它——其他塊做得再好,瓶頸不解,整體不動。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">求職</span><p>「找不到工作」拆成:投遞量夠嗎 → 履歷有拿到面試嗎(觸及率)→ 面試有進下一關嗎(轉換率)。三個數字一看,就知道該改履歷、改口條,還是單純投太少。</p></div>
+          <div class="scene-card"><span class="where">健康</span><p>「我想變健康」太大。拆成:睡眠時數、每週運動次數、外食比例。挑一個最爛的先改,一次只改一個。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work self money">
+      <div class="hc-head">
+        <span class="hc-hash">#constraints</span>
+        <span class="hc-name">善用限制</span>
+        <span class="hc-one">限制不是創意的敵人,是創意的模具</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>「什麼都可以做」時,人反而什麼都做不出來。刻意加上時間、預算、格式的限制,會逼大腦放棄完美主義、直奔本質。<b>限制越明確,行動越快。</b></p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>面對開放式任務時,先自己加上一條限制:「只能用一個週末」「預算五千以內」「只能寫一頁」。</li>
+          <li>問:「如果資源只有現在的十分之一,我會怎麼做?」——答案通常就是該做的核心。</li>
+          <li>把現有的限制(沒錢、沒時間、沒人脈)重新框成題目:「<b>在</b>沒有 X 的情況下,如何達成 Y?」</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">自我成長</span><p>想學新技能但「沒時間」?把限制寫死:每天只練 20 分鐘,多了不准。小到不可能失敗的承諾,反而撐得過三個月。</p></div>
+          <div class="scene-card"><span class="where">消費・生活</span><p>搬家或旅行打包,給自己「一咖行李箱」的限制。你會驚訝地發現:真正需要的東西,原來這麼少。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work self">
+      <div class="hc-head">
+        <span class="hc-hash">#analogies</span>
+        <span class="hc-name">類比遷移</span>
+        <span class="hc-one">你的問題,別的領域早就解過了</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>絕大多數「新問題」只是舊問題換了衣服。找出你的問題的<b>深層結構</b>(排隊?配對?資源分配?信任建立?),然後去看其他領域怎麼解同一個結構。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>把問題抽象化一層:「這本質上是一個____問題。」</li>
+          <li>問:「還有哪些領域也有這種問題?他們怎麼解?」(餐廳怎麼處理排隊?機場怎麼處理尖峰?)</li>
+          <li>把那個解法搬回來,調整不合身的部分。同時小心:類比只是<b>起點</b>,不是證明——兩件事像,不代表一樣。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">家庭</span><p>小孩不肯寫作業 ≈ 員工不想做無聊任務。管理學的解法(把大任務切小、即時回饋、完成後有自主時間)搬回家,常常比吼有效。</p></div>
+          <div class="scene-card"><span class="where">自我成長</span><p>存錢很難?借用健身的「課表」概念:發薪日自動轉帳,就像固定去健身房——不靠意志力,靠系統。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work money self">
+      <div class="hc-head">
+        <span class="hc-hash">#contrarian</span>
+        <span class="hc-name">逆向思考</span>
+        <span class="hc-one">想不出怎麼成功,就先想怎樣必定失敗</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>正向問題(「怎麼把活動辦好?」)常常太抽象;反過來問(「怎麼保證這場活動辦砸?」)答案會瞬間具體:沒人宣傳、時間跟大考撞期、場地難找……然後,<b>把清單反過來,就是行動方案</b>。這是數學家 Jacobi 和查理・蒙格都愛用的「反演法」。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>把目標反過來:「如果我想確保失敗,我該做什麼?」盡量列,越損越好。</li>
+          <li>檢查清單:「哪幾條我現在<b>正在做</b>?」——這比任何建議都刺,也都準。</li>
+          <li>逐條設計避免方法,優先消滅「一旦發生就無法挽回」的那幾條。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">感情</span><p>「怎麼經營好關係」很難答;「怎麼保證把關係搞砸」很簡單:翻舊帳、冷戰、只在需要幫忙時聯絡、當眾讓對方難堪。對照看看,再決定要改哪一條。</p></div>
+          <div class="scene-card"><span class="where">金錢</span><p>「怎麼變有錢」眾說紛紜;「怎麼保證變窮」很明確:高利貸、跟風梭哈、不保險、賺多少花多少。先確保自己不做這些,已經贏過一半的人。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work self">
+      <div class="hc-head">
+        <span class="hc-hash">#hypothesisdev</span>
+        <span class="hc-name">建立可測試的假設</span>
+        <span class="hc-one">別爭論,設計一個小實驗</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>好的假設有一個特徵:<b>它可能被證明是錯的</b>。「我不適合社交」無法測試;「我在超過十人的場合會不自在,但小聚會可以」可以測試。把信念改寫成可測試的版本,再用最小成本的實驗去驗證,而不是在腦中無限辯論。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>把模糊的信念改寫成「如果我做 X,應該會發生 Y」的格式。</li>
+          <li>設計一個<b>一週內、低成本</b>就能做的實驗。</li>
+          <li>事先寫下「什麼結果算成立、什麼算不成立」——事後才定標準,人一定會自圓其說。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">職涯</span><p>「我可能會喜歡當老師」——別急著辭職去讀教程。假設:「如果我喜歡教學,帶一次讀書會應該會有成就感。」先辦一場,用 3 小時驗證,而不是用 3 年。</p></div>
+          <div class="scene-card"><span class="where">健康</span><p>「咖啡害我睡不好」?實驗:兩週不喝下午咖啡,記錄入睡時間。有數據再下結論,不用永遠戒掉心愛的東西。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work family">
+      <div class="hc-head">
+        <span class="hc-hash">#designthinking</span>
+        <span class="hc-name">設計思維</span>
+        <span class="hc-one">先懂人,再解題;先做粗糙版,再修</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>多數失敗的方案,是為「想像中的使用者」設計的。設計思維的順序是:<b>同理(觀察真人怎麼做)→ 定義(真正的問題是什麼)→ 發想 → 做粗糙原型 → 測試</b>。關鍵精神:用最便宜的版本盡早暴露錯誤。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>先觀察或訪談「會用到這個方案的人」,聽他們<b>抱怨什麼</b>,而不是想要什麼。</li>
+          <li>用一句話定義問題:「____(誰)需要____,因為____。」</li>
+          <li>做一個丟掉也不心疼的粗糙版本,拿去給真人試,根據反應修改。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">家庭</span><p>想幫爸媽「數位化」記帳?先看他們現在怎麼記(紙本?根本沒記?),痛點可能是「看不清楚手機字」而不是「不會用 App」——那該做的是調大字體,不是換工具。</p></div>
+          <div class="scene-card"><span class="where">職場</span><p>要提案新流程,別憋三個月做完美簡報。先畫一頁草圖找兩位同事聊十分鐘,他們的第一反應會幫你省掉大改的災難。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work self money">
+      <div class="hc-head">
+        <span class="hc-hash">#optimization</span>
+        <span class="hc-name">找槓桿點</span>
+        <span class="hc-one">20% 的投入,決定 80% 的結果——找出那 20%</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>資源(時間、錢、精力)永遠有限,所以「做什麼」比「做多少」重要。兩個關鍵概念:<b>帕累托法則</b>(少數投入產生多數結果)和<b>報酬遞減</b>(同一件事做到某個程度後,再投入的效益會越來越低)。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>列出你為某目標做的所有事,問:「哪 1–2 件貢獻了大部分成果?」加碼它們。</li>
+          <li>問:「哪些事我已經做到 85 分,再拚到 95 分要花三倍力氣?」——停在 85 分,把力氣移去別處。</li>
+          <li>定期檢查:「我現在最花時間的事,和最有價值的事,是同一件嗎?」</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">自我成長</span><p>學語言:前 500 個高頻字涵蓋日常對話的大半。先攻高頻字和敢開口,而不是從第一頁文法書啃到最後一頁。</p></div>
+          <div class="scene-card"><span class="where">金錢</span><p>省錢別從戒飲料下手——先處理三大支出:住、行、訂閱。談成一次房租降價,勝過戒一整年手搖。</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 3 有效溝通 ================= -->
+<section id="c3" class="c3">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>有效溝通</h2>
+    <span class="en">Communicating Effectively</span>
+  </div>
+  <div class="comp-banner b3">
+    <p><b>核心問題:「對方聽完後,會理解什麼、感覺什麼、做什麼?」</b>——溝通的成敗不是由「我講了什麼」決定,而是由「對方接收到什麼」決定。這一章把表達從天賦變成技術。</p>
+  </div>
+
+  <div class="hc-list">
+
+    <div class="hc" data-domains="work family">
+      <div class="hc-head">
+        <span class="hc-hash">#audience</span>
+        <span class="hc-name">受眾意識</span>
+        <span class="hc-one">同一件事,對不同人要講不同版本</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>訊息不是為自己寫的,是為對方寫的。開口前先回答三個問題:對方<b>已經知道什麼</b>(決定你要不要解釋背景)、<b>在乎什麼</b>(決定你強調哪個角度)、<b>能決定什麼</b>(決定你提出什麼請求)。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>寫任何重要訊息前,先寫一行:「這是給誰看的?他最在乎的一件事是?」</li>
+          <li>刪掉所有對方不需要的背景和術語;補上對方需要但你覺得「理所當然」的資訊。</li>
+          <li>用對方的語言包裝你的重點:對老闆講風險與成本,對工程師講規格,對家人講感受。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">職場</span><p>同一個專案延期:對主管說「延兩週,多花 X 成本,但避免了 Y 風險,需要你核可」;對團隊說「時程調整後,你們各自的截止日變成……」。內容同源,重點完全不同。</p></div>
+          <div class="scene-card"><span class="where">家庭</span><p>跟長輩解釋你的工作,別用職稱和術語。說「我幫公司確保付給廠商的錢和合約對得起來」,勝過任何一個英文縮寫。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work">
+      <div class="hc-head">
+        <span class="hc-hash">#organization</span>
+        <span class="hc-name">結論先行</span>
+        <span class="hc-one">先講答案,再講理由;別讓對方等到最後一段</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>學校教我們「起承轉合」,但職場和日常溝通的鐵則相反:<b>金字塔結構</b>——最上面是結論,下面是支撐它的 2–3 個理由,再下面才是細節。對方隨時可以停止閱讀,而且不會漏掉重點。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>寫完訊息後,找出你真正想說的那句話,<b>剪下,貼到第一行</b>。</li>
+          <li>第一行講清楚:這是「通知」「請求」還是「需要你決定」?需要的話,截止日是何時?</li>
+          <li>理由控制在三點以內。超過三點,合併或刪除——沒有人記得住第四點。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">職場</span><p>對比:「主管好,是這樣的,上週廠商說……(500 字)……所以想請問可否延期」vs.「主管好,想申請 A 案延期一週(本週五前需決定)。原因有二:……」後者三秒抓到重點,前者可能根本沒被讀完。</p></div>
+          <div class="scene-card"><span class="where">日常</span><p>請人幫忙也一樣:先講請求(「想借你的車週六用半天」),再講原因。鋪陳半天才進正題,對方早已在猜你要幹嘛,而且通常往壞處猜。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work family">
+      <div class="hc-head">
+        <span class="hc-hash">#medium</span>
+        <span class="hc-name">選對媒介</span>
+        <span class="hc-one">有些話適合打字,有些話必須見面說</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>媒介本身就是訊息的一部分。粗略原則:<b>資訊越複雜、情緒越敏感,媒介就要越「豐富」</b>(文字 → 語音 → 視訊 → 面對面)。文字適合留紀錄和單純資訊;衝突、道歉、壞消息,文字幾乎必定被誤讀成最糟的語氣。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>發送前問:「這則訊息被用<b>最糟糕的語氣</b>朗讀出來,會變成什麼樣?」會出事就改打電話。</li>
+          <li>需要對方存證、照步驟做的事 → 用文字;需要來回討論、有情緒的事 → 用同步溝通。</li>
+          <li>重要口頭討論後,補一則文字摘要:「剛剛我們同意了 A、B、C」——同步的溫度加上非同步的紀錄。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">感情</span><p>吵架吵到一半千萬別轉戰文字。訊息沒有表情和語氣,「隨便你」四個字可以被解讀出七種恨意。約時間當面談,或至少通話。</p></div>
+          <div class="scene-card"><span class="where">職場</span><p>要糾正同事的錯誤:私下口頭說(保留他的面子),事後用文字確認修正事項(保留紀錄)。順序反過來就是公開處刑。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work family self">
+      <div class="hc-head">
+        <span class="hc-hash">#persuasion</span>
+        <span class="hc-name">說服三要素</span>
+        <span class="hc-one">說服 = 可信(ethos)× 情感(pathos)× 邏輯(logos)</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>兩千年前亞里斯多德就發現:光有道理說服不了人。完整的說服需要三個支柱:<b>Ethos</b>(對方憑什麼信你)、<b>Pathos</b>(這件事和對方的感受、利益有什麼關係)、<b>Logos</b>(邏輯與證據)。多數人只準備了 logos,然後納悶為什麼沒人買單。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li><b>Ethos:</b>開場先建立可信度——你做過什麼、你了解對方的處境、你和對方利益一致的地方。</li>
+          <li><b>Pathos:</b>把主張翻譯成對方在乎的東西:「這能幫你省下每週三小時」比「這能提升效率 12%」有感。</li>
+          <li><b>Logos:</b>證據和邏輯放在中段撐腰,並主動處理對方最可能的反對意見(「你可能會擔心 X,我的想法是……」)。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">家庭</span><p>說服爸媽去做健康檢查:純講數據(logos)沒用。試試「我陪你去,順便帶你吃那家你愛的餐廳」(pathos)+「醫生朋友也說這年紀該做」(ethos)。</p></div>
+          <div class="scene-card"><span class="where">職場</span><p>提案被打槍,常是因為只有分析沒有信任。先做出一個小成果建立 ethos,再拿著它去提大案子,同一份簡報的命運會完全不同。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work money family">
+      <div class="hc-head">
+        <span class="hc-hash">#negotiate</span>
+        <span class="hc-name">談判思維</span>
+        <span class="hc-one">立場會對撞,利益能交換</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>談判的關鍵區分:<b>立場</b>(我要什麼)vs.<b>利益</b>(我為什麼要)。兩個立場可能水火不容,但底下的利益常常可以同時滿足。另一個核心概念是 <b>BATNA</b>:談不成的話,你的最佳替代方案是什麼?BATNA 越強,你越不需要委屈求全。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>談之前寫下:我的利益是什麼?對方的利益<b>可能</b>是什麼?我的 BATNA 是什麼?</li>
+          <li>對話中多問「為什麼」和「還有什麼對你很重要?」——挖對方立場底下的利益。</li>
+          <li>提出「對我很重要、對你成本低」和「對你很重要、對我成本低」的交換,把餅做大而不是切餅。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">金錢</span><p>談薪水:立場是「我要多 5,000」,利益可能是「被肯定+付房租」。如果對方預算真的卡死,交換物可以是職稱、遠端天數、培訓預算、半年後調薪承諾——別讓談判只剩一個數字。</p></div>
+          <div class="scene-card"><span class="where">家庭</span><p>過年回誰家?立場對撞(回我家 vs. 回你家),利益其實是「陪到自己爸媽+不想通勤太累」。解法可能是分段回、輪流制、或把爸媽接來——先問利益,選項就變多了。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work self">
+      <div class="hc-head">
+        <span class="hc-hash">#dataviz</span>
+        <span class="hc-name">用數字說話(也看穿數字話術)</span>
+        <span class="hc-one">數字不會說謊,但用數字的人會</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>數字和圖表是最有力的說服工具,也是最常見的誤導工具。會「讀」數字的人要檢查:<b>基期</b>(成長 100% 可能只是從 1 變 2)、<b>分母</b>(「九成醫師推薦」——問了幾位?)、<b>圖表軸</b>(Y 軸不從零開始,小差距看起來像懸崖)。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>看到百分比,先問「原始數字是多少?」;看到平均值,問「分布長怎樣?」(一個首富就能拉高全村平均)。</li>
+          <li>看到嚇人的圖表,檢查 Y 軸起點和時間範圍——只截取對自己有利的區間是基本套路。</li>
+          <li>自己呈現數字時反著做:給對方脈絡(比較基準、時間範圍),一張圖只講一個重點。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">消費</span><p>「用了 X 產品,肌膚水潤度提升 87%!」——87% 是跟什麼比?怎麼量的?幾個人測的?沒有這三個答案,87% 只是裝飾用的數學。</p></div>
+          <div class="scene-card"><span class="where">新聞</span><p>「某疾病患者暴增三倍!」先查基數:從 2 例變 6 例也是三倍。再查:是病例真的變多,還是篩檢變多了?</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work family self">
+      <div class="hc-head">
+        <span class="hc-hash">#critique</span>
+        <span class="hc-name">給予與接收回饋</span>
+        <span class="hc-one">回饋要對事、要具體、要可行動</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>好回饋的三要件:<b>對行為不對人格</b>(「這份報告缺結論」而非「你很粗心」)、<b>具體</b>(指得出是哪裡、哪一句)、<b>可行動</b>(對方知道下一步怎�麼改)。接收回饋則要練一個動作:把「內容」和「語氣」分開處理——語氣再刺,內容可能仍有金子。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>給回饋用公式:「當你做 X(具體行為),造成了 Y(影響),下次可以試試 Z(建議)。」</li>
+          <li>接收回饋時,先說「謝謝,讓我想一下」——把「當場防衛」和「事後評估」分開,你有權回家再消化。</li>
+          <li>主動要回饋時問具體問題:「這份簡報哪一頁最沒說服力?」比「你覺得怎麼樣?」能拿到有用一百倍的答案。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">家庭</span><p>對家人:「你都不關心這個家」(人格攻擊,必吵架)改成「這禮拜的家事都是我做的,我很累,下週可以分工嗎?」(行為+影響+請求)。</p></div>
+          <div class="scene-card"><span class="where">職場</span><p>被主管當眾念了一頓。先分離:語氣(不專業,可另外反映)vs. 內容(報表確實遲交了)。針對內容改進、針對語氣設界線,兩件事分開處理。</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 4 有效互動 ================= -->
+<section id="c4" class="c4">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>有效互動</h2>
+    <span class="en">Interacting Effectively</span>
+  </div>
+  <div class="comp-banner b4">
+    <p><b>核心問題:「怎麼和人一起把事情做成?」</b>——幾乎所有值得做的事都需要別人:同事、伴侶、家人、朋友。這一章是關於情緒、衝突、責任與倫理的操作手冊——最軟的主題,最硬的技術。</p>
+  </div>
+
+  <div class="hc-list">
+
+    <div class="hc" data-domains="family work self">
+      <div class="hc-head">
+        <span class="hc-hash">#emotionaliq</span>
+        <span class="hc-name">情緒智能</span>
+        <span class="hc-one">先辨識情緒,再回應事情——順序不能反</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>情緒不是理性的敵人,而是<b>資料</b>:憤怒常代表「界線被侵犯」,焦慮常代表「在乎但失控」。情緒智能的第一步是幫情緒<b>精確命名</b>——研究顯示,光是說出「我現在是失望,不是生氣」,情緒強度就會下降(name it to tame it)。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>感到情緒上來時,先暫停,問:「這是什麼情緒?它想告訴我什麼?」把詞彙用準:是委屈、羞愧、嫉妒,還是單純累了?</li>
+          <li>對別人:先接住情緒,再處理事情。「你聽起來很挫折」永遠排在「我覺得你應該……」前面。</li>
+          <li>重大決定不要在情緒高峰做。給自己一個規則:憤怒時寫的訊息,放 24 小時再決定送不送出。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">感情</span><p>伴侶抱怨工作,你急著給解法,對方反而更煩?因為他要的是第二步(接住情緒),你給了第三步。先問:「你想要建議,還是想要我聽你說?」一句話救一個晚上。</p></div>
+          <div class="scene-card"><span class="where">職場</span><p>被客戶罵完,先辨識自己:是委屈(我明明照流程做)還是焦慮(怕影響考績)?命名之後,你會發現需要做的事完全不同——前者需要向主管說明,後者需要確認損害範圍。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="family work">
+      <div class="hc-head">
+        <span class="hc-hash">#conflictresolution</span>
+        <span class="hc-name">衝突處理</span>
+        <span class="hc-one">把「我 vs. 你」改寫成「我們 vs. 問題」</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>衝突的死亡螺旋是「爭對錯」;出口是「解問題」。關鍵重框:雙方不是敵人,而是<b>面對同一個問題的隊友</b>。另外記住:多數衝突表面吵的是事(碗誰洗),底下吵的是感受(我有沒有被重視)——只解表面,同一場架會換題目重吵一百次。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>物理上換位:別隔桌對峙,並肩坐,把問題寫在紙上或白板上——讓「問題」成為你們共同面對的第三方。</li>
+          <li>先複述對方立場到<b>對方點頭</b>為止(「所以你的意思是……對嗎?」),再講自己的。多數衝突在這一步就消一半。</li>
+          <li>問:「我們都能接受的結果,長什麼樣子?」把終點定義出來,再回頭找路。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">家庭</span><p>為錢吵架的夫妻,吵的通常不是錢,是「安全感 vs. 生活品質」的價值排序。把題目改成「我們家的錢要保障什麼、享受什麼?」一起填答案,而不是互相審判對方的消費。</p></div>
+          <div class="scene-card"><span class="where">職場</span><p>兩個部門互踢皮球時,別寫戰爭郵件。約一場會,白板上寫「目標:讓案子準時上線」,然後問:「卡住的三個點是什麼?每個點誰能解?」把人從對立面拉到同一側。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work self">
+      <div class="hc-head">
+        <span class="hc-hash">#responsibility</span>
+        <span class="hc-name">當責</span>
+        <span class="hc-one">解釋原因是為了改進,不是為了脫身</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>「負責」和「自責」不同:自責是情緒(我好糟),當責是行動(我來修)。出錯時最有力的句型是三段式:<b>承認(不加藉口)→ 補救(現在怎麼辦)→ 預防(以後怎麼避免)</b>。反直覺的事實:敢當責的人,信任度反而比從不認錯的人高。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>出錯後第一句話刪掉「但是」:「我遲交了,但是廠商……」→「我遲交了。」句點。原因放在預防段講。</li>
+          <li>立刻提出補救方案,哪怕不完美:「我今晚補上,明早九點前給你。」</li>
+          <li>設計預防機制而不是許願:「以後我會小心」沒有用;「我加了一個提前三天的提醒」才有用。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">職場</span><p>報錯數字給客戶了。最糟:裝死等人發現。最好:主動說「第 3 頁數字有誤,正確版本附上,原因是我引用了舊檔,已改為自動連動來源避免再犯。」這封信反而會加分。</p></div>
+          <div class="scene-card"><span class="where">感情</span><p>忘記重要紀念日。「你也沒提醒我」是火上澆油;「我忘了,對不起。這週末我補一個約會,而且我把明年的日期設了三層提醒」才是修復。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work family">
+      <div class="hc-head">
+        <span class="hc-hash">#teamroles</span>
+        <span class="hc-name">團隊角色與分工</span>
+        <span class="hc-one">好團隊不是每個人都全能,而是拼圖拼得起來</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>團隊失能的兩大來源:<b>角色重疊</b>(兩人都以為自己主導)和<b>角色真空</b>(每個人都以為別人會做)。解法不是感情好,而是把三件事講到白紙黑字:誰<b>決定</b>、誰<b>執行</b>、誰<b>需要被告知</b>。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>任何多人合作開始時,先問三個問題:這件事最後<b>誰拍板</b>?每一塊<b>誰負責</b>?出狀況要<b>通知誰</b>?</li>
+          <li>觀察成員的天然傾向(有人愛開創、有人擅收尾、有人天生協調者),依傾向分工,而不是平均分配。</li>
+          <li>每隔一段時間問:「有沒有事情掉在沒人負責的縫裡?」——真空比重疊更常出事,因為它安靜。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">家庭</span><p>家事戰爭的根源常是「隱形真空」:垃圾、繳費、長輩生日……誰都沒被指派,最後都落在同一人身上並累積怨氣。做一張家庭分工表,把隱形工作變成看得見的格子。</p></div>
+          <div class="scene-card"><span class="where">朋友</span><p>揪團旅行會翻臉,九成是因為沒人拍板。出發前指定:機票住宿 A 負責、行程 B 負責、預算 C 管——「大家一起看看」等於沒有人看。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work family self">
+      <div class="hc-head">
+        <span class="hc-hash">#powerdynamics</span>
+        <span class="hc-name">看懂權力動態</span>
+        <span class="hc-one">房間裡誰能說「不」,誰的沉默有重量</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>每段關係、每個房間都有權力結構——不承認它不會讓它消失,只會讓你誤判局勢。權力來源很多種:職位、資訊、人脈、專業、甚至「比較不怕失去這段關係的那一方」。看懂結構,你才知道該說服誰、該在哪個場合說、以及自己手上其實有哪些籌碼。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>進入任何協商或提案前,畫出關係圖:誰是<b>決策者</b>?誰是<b>影響決策者的人</b>?誰會被影響但沒聲音?</li>
+          <li>盤點自己的權力來源:你有什麼別人需要的東西(技能、資訊、時間、替代選項)?你的 BATNA 是什麼?</li>
+          <li>權力低的一方要善用<b>結盟</b>與<b>時機</b>:一個人提加薪是請求,掌握關鍵專案時提是談判。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">職場</span><p>提案給主管前,先跟會議裡「主管會參考意見的那個人」私下聊過。很多提案不是輸在內容,是輸在決策者身邊的人第一次聽到就皺眉。</p></div>
+          <div class="scene-card"><span class="where">消費</span><p>續約談判(房租、電信、健身房)時,你的權力來自「可以走」。先查好替代方案的行情再開口——手上有 B 選項的人,講話音量自然不一樣。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="work self family">
+      <div class="hc-head">
+        <span class="hc-hash">#ethics</span>
+        <span class="hc-name">倫理考量</span>
+        <span class="hc-one">合法的事不一定是對的事——你需要檢查工具</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>灰色地帶的決定,不能只靠「感覺怪怪的」。給自己三個經典檢查器:<b>普遍化測試</b>(如果每個人都這樣做,世界會怎樣?)、<b>報紙測試</b>(這件事上了新聞頭版,我敢承認嗎?)、<b>換位測試</b>(如果我是被影響的那一方,我能接受嗎?)。三關都過,才算過。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>感覺「怪怪的」時不要壓下去——那是警報。停下來跑三個測試。</li>
+          <li>特別警惕「大家都這樣」和「只有這一次」——這兩句是幾乎所有錯誤決定的開場白。</li>
+          <li>列出這個決定的<b>所有</b>利害關係人(包括沒在場的:未來的自己、環境、看著你的孩子),逐一問「對他公平嗎?」</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">職場</span><p>主管暗示你在報告裡「把數字弄漂亮一點」。報紙測試:「公司美化數據,員工照做」這個標題你想當主角嗎?可以做的替代:呈現真實數字+改善計畫,漂亮的是趨勢而不是造假。</p></div>
+          <div class="scene-card"><span class="where">日常</span><p>撿到好處(店員多找錢、系統多發款項)。普遍化測試:每個人都默默收下的世界,是你想住的世界嗎?小事的答案,決定大事來臨時你是誰。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hc" data-domains="self family work">
+      <div class="hc-head">
+        <span class="hc-hash">#perspectives</span>
+        <span class="hc-name">觀點採納</span>
+        <span class="hc-one">在反駁之前,先有能力把對方的立場講到他點頭</span>
+        <span class="hc-toggle">+</span>
+      </div>
+      <div class="hc-body">
+        <h4>準則</h4>
+        <p>「我懂你的意思,但是——」通常代表根本沒懂。真正的觀點採納是<b>鋼人(steelman)</b>:把對方的論點整理成<b>比他自己講得還好</b>的版本,再來評估。這不是妥協,而是策略:你只有真正理解一個立場,才有資格反駁它,也才可能改變抱持它的人。</p>
+        <h4>怎麼做</h4>
+        <ol class="steps">
+          <li>遇到強烈不同意的觀點,先問自己:「一個聰明、善良的人,為什麼會相信這個?」認真回答,不准用「因為他笨/壞」。</li>
+          <li>複述練習:「你是不是說……?」直到對方說「對,就是這個意思」——這之前,你的反駁都在打空氣。</li>
+          <li>刻意接觸立場相反的優質資訊來源:不是為了被說服,是為了校準你對「對方陣營」的想像。</li>
+        </ol>
+        <h4>生活場景</h4>
+        <div class="scene">
+          <div class="scene-card"><span class="where">家庭</span><p>爸媽反對你的職涯選擇。鋼人他們:他們經歷過的年代,穩定=生存。先說出「我知道你們是怕我沒保障,這個擔心合理」,再談你的規劃——被理解的人,才聽得進話。</p></div>
+          <div class="scene-card"><span class="where">社會議題</span><p>下次想轉發罵某陣營的貼文前,先做一題:「我能不能用三句話,公允地說出他們最強的論點?」說不出來,代表你反對的是想像中的稻草人。</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 5 練習系統 ================= -->
+<section id="practice">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>練習系統:把準則變成習慣</h2>
+    <span class="en">The Practice System</span>
+  </div>
+  <p class="sec-intro">
+    Minerva 學生不是「讀過」這些 HC,而是<strong>四年間在每堂課、每份作業裡反覆標註和被評分</strong>。你不需要念四年,但需要複製它的核心機制:<strong>刻意使用 → 事後標註 → 定期複盤</strong>。這套流程一週只需要 30 分鐘。
+  </p>
+
+  <div class="practice-grid">
+    <div class="practice-step">
+      <div class="big">01</div>
+      <h3>每週只練 2 條</h3>
+      <p>週一從速查表挑 2 條「本週剛好用得到」的 HC(例如這週要談薪水 → 選 #negotiate 和 #powerdynamics)。寫在手機備忘錄置頂。<b>一次練太多條 = 一條都練不成。</b></p>
+    </div>
+    <div class="practice-step">
+      <div class="big">02</div>
+      <h3>用到就標註</h3>
+      <p>每次實際用上(或事後發現「剛剛應該用」),花 30 秒記一行:「今天開會用了 #organization,先講結論,主管明顯比較快抓到重點。」標註這個動作本身,就是在幫大腦建立索引。</p>
+    </div>
+    <div class="practice-step">
+      <div class="big">03</div>
+      <h3>週日 10 分鐘複盤</h3>
+      <p>看這週的標註,回答三題:哪一次用得最好?哪一次該用而沒用?下週換哪兩條?<b>複盤是把經驗變成能力的那一道工序</b>——跳過它,經驗只是流水帳。</p>
+    </div>
+  </div>
+
+  <table class="week-table">
+    <caption>八週入門課表(範例,可依自己的生活調整)</caption>
+    <thead><tr><th style="width:90px">週次</th><th style="width:280px">練習的 HC</th><th>本週任務</th></tr></thead>
+    <tbody>
+      <tr><td>第 1 週</td><td><span class="wk-hash">#organization</span> + <span class="wk-hash">#audience</span></td><td>本週發出的每一封重要訊息,第一行都是結論;發送前問一次「對方最在乎什麼?」</td></tr>
+      <tr><td>第 2 週</td><td><span class="wk-hash">#assumptions</span> + <span class="wk-hash">#emotionaliq</span></td><td>每次出現負面情緒,寫下情緒的名字+它背後的結論+結論底下的隱藏假設。一週至少抓到 3 個假設。</td></tr>
+      <tr><td>第 3 週</td><td><span class="wk-hash">#breakitdown</span> + <span class="wk-hash">#optimization</span></td><td>挑一個拖延很久的大目標,拆成子問題,找出瓶頸,只對瓶頸行動。</td></tr>
+      <tr><td>第 4 週</td><td><span class="wk-hash">#evidencebased</span> + <span class="wk-hash">#sourcequality</span></td><td>本週轉發任何資訊前,先花一分鐘找原始出處。抓到一則不實或誇大訊息就算達標。</td></tr>
+      <tr><td>第 5 週</td><td><span class="wk-hash">#biasidentification</span> + <span class="wk-hash">#estimation</span></td><td>做一個消費或投資決定前,檢查錨定與沉沒成本,並用費米估算驗證划算與否。</td></tr>
+      <tr><td>第 6 週</td><td><span class="wk-hash">#conflictresolution</span> + <span class="wk-hash">#perspectives</span></td><td>下一次意見不合時,先複述對方立場到他點頭,再說自己的。至少實戰一次。</td></tr>
+      <tr><td>第 7 週</td><td><span class="wk-hash">#contrarian</span> + <span class="wk-hash">#hypothesisdev</span></td><td>為一個目標列「失敗保證清單」;把一個猶豫已久的想法,設計成一週內可完成的小實驗。</td></tr>
+      <tr><td>第 8 週</td><td><span class="wk-hash">#responsibility</span> + <span class="wk-hash">#critique</span></td><td>主動向一個信任的人要一次具體回饋;若這週有出錯,用「承認→補救→預防」三段式處理。</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 6 誤區 ================= -->
+<section id="traps">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2>常見誤區</h2>
+    <span class="en">Common Traps</span>
+  </div>
+  <div class="trap">
+    <div class="trap-card">
+      <div class="no">誤區 1</div>
+      <h3>把批判思考用成<s>批評別人</s></h3>
+      <p>這些工具最重要的用途是<b>對內</b>:檢查自己的假設、自己的偏誤。整天用 #fallacies 糾正別人聊天中的邏輯,只會讓你變成沒人想約的那個人。先當自己的品管,再(被邀請時)當別人的。</p>
+    </div>
+    <div class="trap-card">
+      <div class="no">誤區 2</div>
+      <h3>想<s>一次學會全部</s></h3>
+      <p>28 條全部略懂 = 一條都不會用。習慣的形成需要同一條準則在不同情境重複出現數十次。寧可三個月只練熟 6 條,那 6 條會跟你一輩子。</p>
+    </div>
+    <div class="trap-card">
+      <div class="no">誤區 3</div>
+      <h3>凡事都要<s>分析到底</s></h3>
+      <p>批判思考本身也要 #optimization:午餐吃什麼不需要決策樹。把深度分析留給「不可逆、影響大」的決定;小事快速決定,錯了就當學費。分析癱瘓和不思考一樣糟。</p>
+    </div>
+    <div class="trap-card">
+      <div class="no">誤區 4</div>
+      <h3>知道了就以為<s>做得到</s></h3>
+      <p>讀懂 #emotionaliq 和「情緒上來時真的能暫停」之間,隔著幾十次失敗的練習。看完這頁你獲得的是地圖,不是腿。允許自己做得很爛地開始——這正是 Minerva 給學生打「使用程度分數」而不是「會不會」的原因。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7 速查表 ================= -->
+<section id="cheat">
+  <div class="sec-head">
+    <span class="sec-num">07</span>
+    <h2>一頁速查表</h2>
+    <span class="en">Cheat Sheet</span>
+  </div>
+  <p class="sec-intro">每條 HC 濃縮成一個「自我提問」。把這張表存起來,遇到狀況時掃一眼,找到該問自己的那個問題。</p>
+  <table class="cheat">
+    <thead><tr><th style="width:170px">HC</th><th style="width:150px">名稱</th><th>遇到狀況時,問自己:</th></tr></thead>
+    <tbody>
+      <tr class="cat"><td colspan="3">01 · 批判思考 — 我為什麼相信這件事?</td></tr>
+      <tr><td>#evidencebased</td><td>基於證據</td><td class="q">支持這個說法的證據是什麼?品質如何?</td></tr>
+      <tr><td>#sourcequality</td><td>來源品質</td><td class="q">這是誰說的?他說這話有沒有利益動機?</td></tr>
+      <tr><td>#assumptions</td><td>檢視假設</td><td class="q">這個結論要成立,還需要哪些沒說出口的前提?</td></tr>
+      <tr><td>#biasidentification</td><td>辨識偏誤</td><td class="q">如果今天重來,我還會做一樣的選擇嗎?(沉沒成本/錨定/確認偏誤)</td></tr>
+      <tr><td>#plausibility</td><td>合理性檢驗</td><td class="q">如果這是真的,世界應該長什麼樣?為什麼是我遇到這個好機會?</td></tr>
+      <tr><td>#estimation</td><td>粗略估算</td><td class="q">粗算一下,這個數字的數量級撐得起這個計畫嗎?</td></tr>
+      <tr><td>#fallacies</td><td>邏輯謬誤</td><td class="q">對方攻擊的,真的是我說過的話嗎?(稻草人/滑坡/人身攻擊)</td></tr>
+      <tr class="cat"><td colspan="3">02 · 創意思考 — 還有沒有別的可能?</td></tr>
+      <tr><td>#breakitdown</td><td>拆解問題</td><td class="q">這個大問題由哪幾塊組成?哪一塊是瓶頸?</td></tr>
+      <tr><td>#constraints</td><td>善用限制</td><td class="q">如果資源只有十分之一,我會怎麼做?</td></tr>
+      <tr><td>#analogies</td><td>類比遷移</td><td class="q">這本質上是什麼問題?別的領域怎麼解它?</td></tr>
+      <tr><td>#contrarian</td><td>逆向思考</td><td class="q">怎樣做保證失敗?我正在做清單上的哪幾條?</td></tr>
+      <tr><td>#hypothesisdev</td><td>可測試假設</td><td class="q">我能設計什麼一週內的小實驗,來驗證這個想法?</td></tr>
+      <tr><td>#designthinking</td><td>設計思維</td><td class="q">真正的使用者在抱怨什麼?最粗糙的可測試版本長怎樣?</td></tr>
+      <tr><td>#optimization</td><td>找槓桿點</td><td class="q">哪 20% 的投入產生了 80% 的結果?哪件事已經到了報酬遞減?</td></tr>
+      <tr class="cat"><td colspan="3">03 · 有效溝通 — 對方會理解什麼、感覺什麼、做什麼?</td></tr>
+      <tr><td>#audience</td><td>受眾意識</td><td class="q">對方已經知道什麼?最在乎什麼?能決定什麼?</td></tr>
+      <tr><td>#organization</td><td>結論先行</td><td class="q">我的結論在第一行嗎?理由有沒有超過三點?</td></tr>
+      <tr><td>#medium</td><td>選對媒介</td><td class="q">這則訊息用最糟的語氣讀出來,會變成什麼?該打電話嗎?</td></tr>
+      <tr><td>#persuasion</td><td>說服三要素</td><td class="q">我準備了邏輯,那可信度和對方的感受呢?</td></tr>
+      <tr><td>#negotiate</td><td>談判思維</td><td class="q">對方立場底下的利益是什麼?我的 BATNA 是什麼?</td></tr>
+      <tr><td>#dataviz</td><td>看懂數字</td><td class="q">百分比的原始數字是多少?圖表的 Y 軸從哪裡開始?</td></tr>
+      <tr><td>#critique</td><td>回饋技術</td><td class="q">我講的是行為還是人格?具體嗎?對方知道下一步嗎?</td></tr>
+      <tr class="cat"><td colspan="3">04 · 有效互動 — 怎麼和人一起把事情做成?</td></tr>
+      <tr><td>#emotionaliq</td><td>情緒智能</td><td class="q">這是什麼情緒?它想告訴我什麼?對方需要建議還是傾聽?</td></tr>
+      <tr><td>#conflictresolution</td><td>衝突處理</td><td class="q">怎麼把「我 vs. 你」變成「我們 vs. 問題」?表面吵的事底下,真正的感受是什麼?</td></tr>
+      <tr><td>#responsibility</td><td>當責</td><td class="q">我的第一句話有沒有夾帶「但是」?補救和預防方案是什麼?</td></tr>
+      <tr><td>#teamroles</td><td>團隊分工</td><td class="q">誰拍板?誰執行?有沒有事情掉在沒人負責的縫裡?</td></tr>
+      <tr><td>#powerdynamics</td><td>權力動態</td><td class="q">誰是真正的決策者?我手上的籌碼和替代方案是什麼?</td></tr>
+      <tr><td>#ethics</td><td>倫理考量</td><td class="q">每個人都這樣做,世界會怎樣?上了頭版我敢承認嗎?</td></tr>
+      <tr><td>#perspectives</td><td>觀點採納</td><td class="q">一個聰明善良的人,為什麼會相信我反對的這件事?</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<footer>
+  <div>
+    <div class="f-title">思考的<span>習慣</span></div>
+    <p style="margin-top:8px;">改編自 Minerva University 的 Habits of Mind & Foundational Concepts 教學框架,重新組織為大眾生活應用教材。</p>
+  </div>
+  <p>使用建議:收藏本頁 → 每週挑 2 條練習 → 用到就標註 → 週日花 10 分鐘複盤。<br>知識會過時,思考的習慣不會。</p>
+</footer>
+
+<script>
+// 卡片展開/收合
+document.querySelectorAll('.hc-head').forEach(function(head){
+  head.addEventListener('click', function(){
+    head.parentElement.classList.toggle('open');
+  });
+});
+// 領域篩選
+document.querySelectorAll('.chip').forEach(function(chip){
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('active');});
+    chip.classList.add('active');
+    var f = chip.dataset.f;
+    document.querySelectorAll('.hc').forEach(function(card){
+      if(f==='all' || (card.dataset.domains||'').indexOf(f) !== -1){
+        card.classList.remove('hidden');
+      }else{
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
